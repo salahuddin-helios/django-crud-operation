@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heyper Helios</title>
+</head>
+<body>
+
+<div>
+    {% for data in dataset %}.
+ 
+    {{ data.name }}<br/>
+    {{ data.number }}<br/>
+    <a href="detail/{{data.id}}">Details</a>
+    <a href="update/{{data.id}}">Update</a>
+    <a href="delete/{{data.id}}">Delete</a>
+    <hr/>
+ 
+    {% endfor %}
+</div>
+</body>
+</html>

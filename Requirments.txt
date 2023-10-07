@@ -1,0 +1,1 @@
+01 create crud operation(create,read,update,delete) with django 

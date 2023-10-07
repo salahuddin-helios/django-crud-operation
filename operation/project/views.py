@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404,HttpResponseRedirect,redir
 from .models import GeeksModel
 from  .forms import GeeksForm
 # Create your views here.
+
 def create_view(request):
     context ={}
 
@@ -19,24 +20,6 @@ def list_view(request):
 def detail_view(request,id):
     data = GeeksModel.objects.get(id = id)
     return render(request, 'app/detail.html',{'data':data})
-
-
-
-
-
-
-
-
-
-
-# def update_view(request,id):
-#     obj = get_object_or_404(GeeksModel,id= id)
-#     form = GeeksForm(request.POST or None,instance=obj)
-#     if form.is_valid():
-#         form.save()
-#         return HttpResponseRedirect('/'+id)
-
-#     return render(request,'update.html',{'form':form})
 
 def update_view(request, id):
     obj = get_object_or_404(GeeksModel,id= id)

@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
     <title>Details</title>
 </head>
 <body>
-    {{ data.name }}<br/>
-    {{ data.number }}<br/>
+    <div class='user-detail'>
+        <img class='card-img' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIn-gE6j6sjvg0ekFgFBIzVP5VdN3aBu9dLg&usqp=CAU" alt="">
+        <h3 class='card-name'>User Name: {{data.name}}</h3>
+        <p class='card-id'>User id: {{data.id}}</p>
+        <p class='card-phone'>Phone Number: {{data.number}}</p>
+        <button>Contact</button>
+    </div>
+    
 </body>
 </html>

@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
     <title>Document</title>
 </head>
 <body>
-    <form method="POST">
-        <!-- Security token by Django -->
-        {% csrf_token %}
- 
-        <!-- form as paragraph -->
-        {{ form.as_p }}
- 
-        <input type="submit" value="Update">
-    </form>
+    <div class='card'> 
+        <h3>Update your information</h3>
+        <form method='POST' entype='multipart/form-data'>
+            {% csrf_token %}
+                     <div class="form-item">
+                        <label for="">Name</label><br>
+                        <input placeholder="Your name" type="text" name="name" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="">Phone Number</label><br>
+                        <input type="text" name="number" placeholder="Your phone number" pattern="[0-9+]{14}" title="Use only BD country code">
+                    </div>
+                    {% comment %} {{ form.as_p }} {% endcomment %}
+                    <input type="submit" value="Update">
+        </form>
 </body>
 </html>

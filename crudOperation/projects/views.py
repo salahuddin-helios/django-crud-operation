@@ -2,7 +2,6 @@ from django.shortcuts import render,get_object_or_404,HttpResponseRedirect,redir
 from .models import UserIformation
 from  .forms import UserInfoForm
 # Create your views here.
-
 def create_view(request):
     context ={}
 
@@ -11,7 +10,7 @@ def create_view(request):
         form.save()
     
     context['form'] = form
-    return render(request, 'app/home.html', context)
+    return render(request, 'app/form.html', context)
 
 def list_view(request):
      data = UserIformation.objects.all()

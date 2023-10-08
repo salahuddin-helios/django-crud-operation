@@ -1,0 +1,22 @@
+
+{% extends "app/base.html" %}
+
+{% block userform %}
+ 
+<div class='card'> 
+  <h3>Enter your information</h3>
+  <form method='POST' entype='multipart/form-data'>
+      {% csrf_token %}
+               <div class="form-item">
+                  <label for="">Name</label><br>
+                  <input placeholder="Your name" type="text" name="name" required>
+              </div>
+              <div class="form-item">
+                  <label for="">Phone Number</label><br>
+                  <input type="text" name="number" placeholder="Your phone number" pattern="[0-9+]{14}" title="Use only BD country code">
+              </div>
+              {% comment %} {{ form.as_p }} {% endcomment %}
+              <input type="submit" value="Submit">
+  </form>
+</div>
+{% endblock %}

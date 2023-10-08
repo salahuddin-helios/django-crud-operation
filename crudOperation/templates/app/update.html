@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-    {% load static %}
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
-    <title>Document</title>
-</head>
-<body>
+{% extends "app/base.html" %}
+{% block  updateData%}
     <div class='card'> 
         <h3>Update your information</h3>
         <form method='POST' entype='multipart/form-data'>
@@ -23,5 +15,6 @@
                     {% comment %} {{ form.as_p }} {% endcomment %}
                     <input type="submit" value="Update">
         </form>
-</body>
-</html>
+    </div>
+
+        {% endblock  %}

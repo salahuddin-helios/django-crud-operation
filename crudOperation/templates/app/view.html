@@ -1,16 +1,5 @@
-<!DOCTYPE html>
- {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
-    <title>Heyper Helios</title>
-</head>
-<body>
-
-<div class=''>
-
+{% extends "app/base.html" %}
+{% block viewData %}
 
     <div class="informatin">
      <div class="table">
@@ -21,7 +10,6 @@
         <div class="table-col">Update</div>
         <div class="table-col">Details</div>
     </div>
-    
     {% for data in dataset %}
     <div class="table-row">
         <div class="table-col">{{data.name}}</div>
@@ -33,7 +21,4 @@
     {%endfor %}
     </div>
         </div>
-
-</div>
-</body>
-</html>
+        {% endblock %}

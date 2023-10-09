@@ -37,7 +37,7 @@ function App() {
     console.log(user);
   }
   const handleDelete = (id)=>{
-    axios.delete('')
+    // axios.delete('')
   }
 
   return (

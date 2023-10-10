@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+/* css */
+.uer-form{
+  margin: 0 auto;
+  width: 25%;
+}
+.user-data{
+  margin: 0 auto;
+}
+
+@media screen and (max-width:600px) {
+  .uer-form{
+    width: 90%;
+  }
+  .user-data{
+    width: 25%;
+  }
+  
+}

@@ -43,7 +43,7 @@ const UserInfo = () => {
                   <th>{user.name}</th>
                   <th>{user.number}</th>
                   <th><Link className='btn btn-primary' to={`/details/${user.id}`}>Detail</Link></th>
-                  <th> <button className='btn btn-primary' onClick={()=> DeleteUser(user.id)}>X</button></th>
+                  <th> <button className='btn btn-primary delete-button'  onClick={()=> DeleteUser(user.id)}>X</button></th>
                 </tr>
                 )
               }

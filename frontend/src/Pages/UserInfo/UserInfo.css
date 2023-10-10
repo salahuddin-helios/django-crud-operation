@@ -13,9 +13,14 @@
         .uer-form{
           width: 90%;
         }
-        .user-data{
+        .user-data table{
           width: 25%;
         }
+        .user-data a, .delete-button{
+               margin: 0;
+               padding: 1px;
+               font-size: 10px;
+              }
         th{
                 font-size: 10px;
         }

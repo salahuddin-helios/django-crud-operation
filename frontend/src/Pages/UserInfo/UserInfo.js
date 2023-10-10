@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 const UserInfo = () => {
     const [users,setUser]= useState([])
     const showUser = ()=>{
-      axios.get('http://127.0.0.1:8000/list')
+      axios.get('http://127.0.0.1:8000/list/')
       .then(res=>{
         setUser(res.data)
       })
@@ -17,11 +18,11 @@ const UserInfo = () => {
         .then(res=>{
           console.log(res.data);
           toast.success('User deleted')
-        //   showUser();
+          showUser();
         })
       }
     return (
-        <div className='mt-4 w-75 user-data'>
+        <div className='mt-4 w-75 user-data shadow-lg bg-dark'>
         <table className="table text-white">
           <thead>
             <tr>
@@ -40,8 +41,8 @@ const UserInfo = () => {
                   <th>{user.id}</th>
                   <th>{user.name}</th>
                   <th>{user.number}</th>
-                  <th><a href="">Detail</a></th>
-                  <th> <button onClick={()=> DeleteUser(user.id)}>X</button></th>
+                  <th><Link className='btn btn-primary' to={`/details/${user.id}`}>Detail</Link></th>
+                  <th> <button className='btn btn-primary' onClick={()=> DeleteUser(user.id)}>X</button></th>
                 </tr>
                 )
               }

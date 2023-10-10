@@ -1,3 +1,5 @@
-.home-background{
-    background-color: linear-gradient(to bottom, rgb(105, 0, 104), rgba(1, 0, 40, 1));
-}
+
+.user-form{
+    margin: 0 auto;
+    width: 25%;
+  }

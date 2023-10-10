@@ -17,7 +17,7 @@ const Navbar = () => {
                       <Link class="nav-link text-light"to={'/'}>Home</Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link text-light" to={'/users'}>All Users</Link>
+                    <Link class="nav-link text-light" to={'/list'}>All Users</Link>
                   </li>
               </ul>
           </div>

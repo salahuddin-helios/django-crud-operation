@@ -13,7 +13,7 @@ const Home = () => {
         name,
         number
     }
-    axios.post('http://127.0.0.1:8000/create',user)
+    axios.post('http://127.0.0.1:8000/create/',user)
     .then(res=>{
      console.log(res.data);
     
@@ -26,7 +26,7 @@ const Home = () => {
     return (
             <div>
  <div className='flex justify-content-center justify-items-center my-4 home-background'>
-        <div className='bg-light p-2 rounded shadow-lg uer-form'>
+        <div className='bg-light p-2 rounded shadow-lg user-form'>
       <h3 className='mb-4'>Add your information</h3>
           <form onSubmit={AddUser}>
             <div className="mb-3">

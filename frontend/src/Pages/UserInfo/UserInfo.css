@@ -1,0 +1,41 @@
+.user-detail{
+        margin: 0 auto;
+        width: 25%;
+}
+
+/* css */
+
+.user-data{
+        margin: 0 auto;
+ }
+      
+ @media screen and (max-width:600px) {
+        .uer-form{
+          width: 90%;
+        }
+        .user-data table{
+          width: 25%;
+        }
+        .user-data a, .delete-button{
+               margin: 0;
+               padding: 1px;
+               font-size: 10px;
+              }
+        th{
+                font-size: 10px;
+        }
+        .user-detail{
+                width: 100%;
+        }
+        .user-detail img{
+                width: 50%;
+        }
+        .user-detail h3{
+                font-size: 17px;
+        }
+        .user-detail p{
+                font-size: 10px;
+        }
+        
+        
+      }

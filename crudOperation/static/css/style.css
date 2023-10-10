@@ -191,6 +191,9 @@ footer p{
 }
 
 @media screen and (max-width: 600px) {
+  .card,.user-detail{
+    box-shadow: none
+  }
   .card{
     width: 90%;
   }

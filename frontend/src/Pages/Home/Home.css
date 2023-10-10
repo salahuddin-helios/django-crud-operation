@@ -3,3 +3,14 @@
     margin: 0 auto;
     width: 25%;
   }
+  @media screen and (max-width:700px){
+    .user-form{
+      width: 50%;
+    }
+  }
+
+  @media screen and (max-width:500px){
+    .user-form{
+      width: 90%;
+    }
+  }

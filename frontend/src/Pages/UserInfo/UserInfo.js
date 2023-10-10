@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import './UserInfo.css'
 const UserInfo = () => {
     const [users,setUser]= useState([])
     const showUser = ()=>{
@@ -22,7 +23,7 @@ const UserInfo = () => {
         })
       }
     return (
-        <div className='mt-4 w-75 user-data shadow-lg bg-dark'>
+        <div className='mt-4 w-75 user-data'>
         <table className="table text-white">
           <thead>
             <tr>

@@ -31,6 +31,7 @@ const UserInfo = () => {
               <th scope="col">Name</th>
               <th scope="col">Number</th>
               <th scope="col">Details</th>
+              <th scope="col">Update</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -43,6 +44,7 @@ const UserInfo = () => {
                   <th>{user.name}</th>
                   <th>{user.number}</th>
                   <th><Link className='btn btn-primary' to={`/details/${user.id}`}>Detail</Link></th>
+                  <th><Link className='btn btn-primary' to={`/update/${user.id}`}>Update</Link></th>
                   <th> <button className='btn btn-primary delete-button'  onClick={()=> DeleteUser(user.id)}>X</button></th>
                 </tr>
                 )

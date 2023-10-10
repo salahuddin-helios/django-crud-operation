@@ -14,6 +14,7 @@ useEffect(()=>{
      setUser(res.data)
     })
 },[])
+
 console.log(user.id);
     return (
         <div className='user-detail text-light text-center my-4'>

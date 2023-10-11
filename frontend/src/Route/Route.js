@@ -3,6 +3,7 @@ import Main from "../Main/Main";
 import Home from "../Pages/Home/Home";
 import UserInfo from "../Pages/UserInfo/UserInfo";
 import UserInfoDetail from "../Pages/UserInfo/UserInfoDetail";
+import UserUpdate from "../Pages/UserUpdate/UserUpdate";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
             {
                 path:'details/:id',
                 element: <UserInfoDetail></UserInfoDetail>,
+            }, 
+            {
+                path:'update/:id',
+                element: <UserUpdate></UserUpdate>
             },
         ]
     }

@@ -1,22 +1,58 @@
 .user-detail{
-        margin: 0 auto;
+        margin: 110px auto;
         width: 25%;
+        /* height: 80vh; */
+      
+}
+table{
+        text-align: center;
 }
 
-/* css */
-
 .user-data{
-        margin: 0 auto;
+        margin: 110px auto;
+        height: 60vh;
  }
       
  @media screen and (max-width:600px) {
+        .user-data{
+                height: 40vh;
+         }
         .uer-form{
           width: 90%;
         }
-        .user-data table{
-          width: 25%;
+        /* .user-data{
+                margin: 60px auto;
+         } */
+           
+        .user-button,.delete-button{
+               margin: 0;
+               padding: 1px;
+               font-size: 7px;
+              }
+        .user-detail img{
+                width: 50%;
         }
-        .user-data a, .delete-button{
+        .user-detail h3{
+                font-size: 10px;
+        }
+        .user-detail p{
+                font-size: 10px;
+        }
+        
+        
+      }
+
+      @media screen and (max-width:600px) {
+
+
+        .table>:not(caption)>*>* {
+                padding: 1px;
+        }
+
+        .uer-form{
+          width: 90%;
+        }
+        .user-button,.delete-button{
                margin: 0;
                padding: 1px;
                font-size: 10px;

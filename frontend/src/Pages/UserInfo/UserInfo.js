@@ -23,7 +23,7 @@ const UserInfo = () => {
         })
       }
     return (
-        <div className='mt-4 w-75 user-data'>
+        <div className='mt-4 w-75 user-data mt-4'>
         <table className="table text-white">
           <thead>
             <tr>
@@ -31,6 +31,7 @@ const UserInfo = () => {
               <th scope="col">Name</th>
               <th scope="col">Number</th>
               <th scope="col">Details</th>
+              <th scope="col">Update</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -42,7 +43,8 @@ const UserInfo = () => {
                   <th>{user.id}</th>
                   <th>{user.name}</th>
                   <th>{user.number}</th>
-                  <th><Link className='btn btn-primary' to={`/details/${user.id}`}>Detail</Link></th>
+                  <th><Link className='btn btn-primary user-button' to={`/details/${user.id}`}>Detail</Link></th>
+                  <th><Link className='btn btn-primary user-button' to={`/update/${user.id}`}>Update</Link></th>
                   <th> <button className='btn btn-primary delete-button'  onClick={()=> DeleteUser(user.id)}>X</button></th>
                 </tr>
                 )

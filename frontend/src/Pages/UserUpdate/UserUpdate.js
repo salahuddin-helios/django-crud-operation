@@ -14,16 +14,20 @@ useEffect(()=>{
      setUser(res.data)
     })
 },[])
-
 const updateUser = event => {
-    event.preventDefault();
-    const form = event.target;
-    const name = form.name.value;
-    const number = form.number.value;
-    axios.put(`http://127.0.0.1:8000/update/${id}`,{
-      name,number
-    })
-    toast.success('User updated')
+  event.preventDefault();
+  const form = event.target;
+  const name = form.name.value;
+  const number = form.number.value;
+  axios.put(`http://127.0.0.1:8000/update/${id}/`,{
+    name,number,
+  })
+  .then(res=>{
+   console.log(res.data);
+   toast.success("User updated")
+  })
+//  form.reset()
+  
 }
 
     return (
@@ -47,8 +51,6 @@ const updateUser = event => {
                    </div>
                  </form>
                </div>
-       
-             
              </div>
            </div>
     );

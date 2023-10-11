@@ -21,11 +21,12 @@ const Home = () => {
     //  showUser();
     })
     console.log(user);
+    form.reset()
   }
  
     return (
             <div>
- <div className='flex justify-content-center justify-items-center my-4 home-background'>
+ <div className='flex justify-content-center justify-items-center my-4'>
         <div className='bg-light p-2 rounded shadow-lg user-form'>
       <h3 className='mb-4'>Add your information</h3>
           <form onSubmit={AddUser}>

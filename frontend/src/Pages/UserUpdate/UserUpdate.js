@@ -44,7 +44,7 @@ const updateUser = event => {
                    <div className="mb-3">
                      <label className="form-label">Phone Number</label>
        
-                     <input defaultValue={user.number} name="number" type="text" className="form-control" id="exampleFormControlInput1" placeholder="Phone" />
+                     <input defaultValue={user.number} name="number" type="text" className="form-control" pattern="[0-9+]{14}" title="Use only BD Number"  id="exampleFormControlInput1" placeholder="Phone" />
                    </div>
                    <div className="mb-3">
                      <input className="btn btn-primary form-control" type="submit" value="Submit" />

@@ -4,6 +4,9 @@ import Home from "../Pages/Home/Home";
 import UserInfo from "../Pages/UserInfo/UserInfo";
 import UserInfoDetail from "../Pages/UserInfo/UserInfoDetail";
 import UserUpdate from "../Pages/UserUpdate/UserUpdate";
+import Product from "../Pages/Product/Product";
+import DetailProduct from "../Pages/Product/DetailProduct";
+import Cart from "../Components/Reduce/Cart";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +29,18 @@ const router = createBrowserRouter([
                 path:'update/:id',
                 element: <UserUpdate></UserUpdate>
             },
+            {
+                path:'product/',
+                element: <Product></Product>
+            },
+            {
+                path:'product/:id',
+                element:<DetailProduct/>
+            },
+            {
+                path:"cart/",
+                element:<Cart></Cart>
+            }
         ]
     }
 ])

@@ -3,28 +3,30 @@ import axios from 'axios'
 import './Home.css'
 import toast from 'react-hot-toast';
 const Home = () => {
-  // const [buttonDisabled, setButtonDisabled] = useState(false)
+  const [formData, setFormData] = useState(null)
+  // const [buttonDisabled, setButtonDisabled] = useState(true)
+
+  const handleChange =(e)=>{
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+
 
   const AddUser = event => {
     event.preventDefault();
-    // setButtonDisabled(true)
-    const form = event.target;
-    const name = form.name.value;
-    const number = form.number.value;
-    const user = {
-        name,
-        number
-    }
-    axios.post('http://127.0.0.1:8000/create/',user)
+    axios.post('http://127.0.0.1:8000/create/',formData)
     .then(res=>{
      console.log(res.data);
     
      toast.success("User created")
     //  showUser();
     })
-    console.log(user);
-    form.reset()
   }
+
+
  
     return (
             <div>
@@ -35,15 +37,15 @@ const Home = () => {
             <div className="mb-3">
               <label className="form-label">Your Name</label>
 
-              <input name="name" type="text" placeholder="Your name" className="form-control" />
+              <input  onChange={handleChange} name="name" type="text" placeholder="Your name" className="form-control" />
             </div>
             <div className="mb-3">
               <label className="form-label">Phone Number</label>
 
-              <input name="number" type="text" className="form-control" id="exampleFormControlInput1" pattern="[0-9+]{14}" title="Use only BD Number" placeholder="Phone" />
+              <input name="number" onChange={handleChange} type="text" className="form-control" id="exampleFormControlInput1" pattern="[0-9+]{14}" title="Use only BD Number" placeholder="Phone" />
             </div>
             <div className="mb-3">
-              <input className="btn btn-primary form-control" type="submit" value="Submit" />
+              <input className="btn btn-primary form-control" disabled={!(formData?.name && formData?.number)} type="submit" value="Submit" />
             </div>
           </form>
         </div>

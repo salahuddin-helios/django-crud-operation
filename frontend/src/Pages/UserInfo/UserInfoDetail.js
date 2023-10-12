@@ -6,9 +6,8 @@ const UserInfoDetail = () => {
     const [user,setUser] = useState({})
     const {id} = useParams()
 
-    
 useEffect(()=>{
-    axios.get(`http://127.0.0.1:8000/details/${id}`)
+    axios.get(`http://127.0.0.1:8000/product/${id}/`)
     .then(res=>{
      setUser(res.data)
     })

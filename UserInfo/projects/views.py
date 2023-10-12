@@ -1,7 +1,7 @@
 from rest_framework import viewsets
-from .serializers import UserInfoSerializer
-from .models import UserIformation
-from rest_framework.generics import ListAPIView,CreateAPIView,DestroyAPIView,RetrieveAPIView,UpdateAPIView
+from .serializers import UserInfoSerializer,MobileSerializer,CartSerializer
+from .models import UserIformation,MobileInformation,Cart
+from rest_framework.generics import ListAPIView,CreateAPIView,DestroyAPIView,RetrieveAPIView,UpdateAPIView,ListCreateAPIView,RetrieveUpdateDestroyAPIView
 
 class UserList(ListAPIView):
     queryset = UserIformation.objects.all()
@@ -25,3 +25,19 @@ class UserUpdate(UpdateAPIView):
     queryset = UserIformation.objects.all()
     serializer_class = UserInfoSerializer
     lookup_field = 'id'
+
+    #product class here
+
+class ListCreateProduct(ListCreateAPIView):
+    queryset = MobileInformation.objects.all()
+    serializer_class = MobileSerializer
+
+class DetailProduct(RetrieveAPIView):
+    queryset = MobileInformation.objects.all()
+    serializer_class = MobileSerializer
+    lookup_field = 'id'
+
+    # add to cart
+class ListCreateCart(ListCreateAPIView):
+    queryset = Cart.objects.all()
+    serializer_class = CartSerializer

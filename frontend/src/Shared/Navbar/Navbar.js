@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useCartContext } from '../../Components/Reduce/Cart_Context';
 const Navbar = () => {
+  const {cart} = useCartContext()
     return (
       <nav className="navbar p-0 navbar-backgrund navbar-expand-lg navbar-light bg-light">
       <div  style={{backgroundColor:'#9B00CA'}} className="container-fluid p-2 shadow-lg">
@@ -18,6 +20,13 @@ const Navbar = () => {
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link text-light" to={'/list'}>All Users</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link text-light" to={'/product/'}>Products</Link>
+                  </li>
+                
+                  <li className="nav-item">
+                    <Link className="nav-link text-light" to={'/cart/'}>Cart</Link>
                   </li>
               </ul>
           </div>

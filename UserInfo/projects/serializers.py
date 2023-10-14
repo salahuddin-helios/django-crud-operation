@@ -9,7 +9,7 @@ class UserInfoSerializer(serializers.ModelSerializer):
 class MobileSerializer(serializers.ModelSerializer):
     class Meta:
         model = MobileInformation
-        fields = ['id', 'name','price', 'stock','image','detail',]
+        fields = ['id', 'name','price', 'stock','image','detail','quantity']
 
 class CartSerializer(serializers.ModelSerializer):
     products = MobileSerializer(source='product',read_only=True)

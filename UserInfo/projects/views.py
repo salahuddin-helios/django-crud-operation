@@ -32,7 +32,7 @@ class ListCreateProduct(ListCreateAPIView):
     queryset = MobileInformation.objects.all()
     serializer_class = MobileSerializer
 
-class DetailProduct(RetrieveAPIView):
+class DetailProduct(RetrieveUpdateDestroyAPIView):
     queryset = MobileInformation.objects.all()
     serializer_class = MobileSerializer
     lookup_field = 'id'
@@ -41,3 +41,9 @@ class DetailProduct(RetrieveAPIView):
 class ListCreateCart(ListCreateAPIView):
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
+
+  # delete from cart
+class deleteCartItem(RetrieveUpdateDestroyAPIView):
+    queryset = Cart.objects.all()
+    serializer_class = CartSerializer
+    lookup_field = 'id'

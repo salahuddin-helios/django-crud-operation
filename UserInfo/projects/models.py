@@ -19,3 +19,4 @@ class MobileInformation(models.Model):
 #User product 
 class Cart(models.Model):
     product = models.ForeignKey(MobileInformation,on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)

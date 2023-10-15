@@ -2,12 +2,11 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './product.css'
-import { useCartContext } from '../../Components/Reduce/Cart_Context';
+import { FaPlus,FaMinus } from "react-icons/fa";
 import toast from 'react-hot-toast';
+import { useCartContext } from '../../Components/Reduce/Cart_Context';
 const DetailProduct = () => {
-
-  const [productQuantity, setProductQuantity] = useState(1)
-    // const {addToCart} = useCartContext();
+    const {showCartIem,setDecrease,setIncrease,productQuantity,addToCart} = useCartContext()
     const [product,setProduct] = useState({})
     const {name,price,image,detail} = product
     const {id} = useParams()
@@ -15,36 +14,25 @@ const DetailProduct = () => {
         axios.get(`http://127.0.0.1:8000/product/${id}/`)
         .then(res=>{
           setProduct(res.data)
+          
         })
     },[])
-    const addToCart = (product)=>{
-        const data = {'product':product}
-        axios.post('http://127.0.0.1:8000/user-product/',data)
-        .then(res=>{
-            toast.success('product added')
-        })
-    }
-    const setIncrease=()=>{
-        setProductQuantity(productQuantity+1)
-    }
-    const setDecrease = ()=>{
-        setProductQuantity(productQuantity-1)
-    }
 
     return (
         <div className='detail-product text-light'>
-            <img src={image} alt="" />
+            <img className='img-fluid' src={image} alt="" />
             <div class="img-fluid">
         <div class="">
-           <h3 className='card-title'>Name: {name}</h3>
-           <h5>Price: {price}</h5>
-           <p>Details: {detail}</p>
-           <div>
-            <button onClick={()=>setIncrease()}>+</button>
-            <h3>{productQuantity}</h3>
-            <button onClick={()=>setDecrease()}>-</button>
+           <h5 className='card-title'>{name}</h5>
+           <p className='card-price'>৳ {price}</p>
+           <p className='card-detail'>Details: {detail}</p>
+           <div className='product-quantity'>
+            <p>Quantity</p>
+            <button disabled={productQuantity === 1} className='decrease' onClick={()=>setDecrease()}><FaMinus></FaMinus></button>
+            <span>{productQuantity}</span>
+            <button className='increase' onClick={()=>setIncrease()}><FaPlus></FaPlus></button>
         </div>
-           <button onClick={()=>addToCart(product.id)} className='btn btn-lg btn-primary'>Add to Cart</button>
+           <button onClick={()=>addToCart(product.id)} className='btn btn-primary'>Add to Cart</button>
         </div>
         </div>
         </div>

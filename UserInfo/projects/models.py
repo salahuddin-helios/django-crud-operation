@@ -9,7 +9,6 @@ class MobileInformation(models.Model):
     name = models.CharField(max_length=200)
     price = models.IntegerField()
     stock = models.IntegerField(null=True, blank=True)
-    quantity = models.IntegerField(default=1)
     image = models.ImageField(upload_to="images")
     detail = models.TextField(max_length=400)
 
@@ -20,3 +19,4 @@ class MobileInformation(models.Model):
 #User product 
 class Cart(models.Model):
     product = models.ForeignKey(MobileInformation,on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)

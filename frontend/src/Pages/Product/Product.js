@@ -11,7 +11,7 @@ const Product = () => {
         })
     },[])
     return (
-        <div className='product-view'>
+        <div className='product-view my-6'>
             {
                 products.map((product,id)=>{
                     return <SingleProduct

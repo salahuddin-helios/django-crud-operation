@@ -1,58 +1,68 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import axios from 'axios';
+import React, { createContext, useContext, useEffect, useReducer, useState } from 'react';
+import toast from 'react-hot-toast';
 const CartContext = createContext()
 
 const CartProvider = ({children}) => {
-    const initialState = {
-        cart: []
+    const [UserProduct,setUserProduct] = useState([])
+    const [productQuantity, setProductQuantity] = useState(1)
+    // add to cart
+    console.log(productQuantity);
+    const addToCart = (product)=>{
+        const data = {'product':product,'quantity':productQuantity}
+        console.log(data);
+        axios.post('http://127.0.0.1:8000/user-product/',data)
+        .then(res=>{
+            toast.success('product added')
+            showCartIem()
+        })
+        console.log(data);
     }
-    const reducer =(state,action)=>{
+    const setIncrease=()=>{
+        setProductQuantity(productQuantity+1)
+    }
+    const setDecrease = ()=>{
+        setProductQuantity(productQuantity-1)
+    }
 
-        // add to cart reducer
-        if(action.type ==='ADD_TO_CART'){
-            let {product} = action.payload;
-            console.log(product);
-            let cartProduct;
-            cartProduct = {
-                name: product.name,
-                price: product.price,
-                image: product.image
-            }
-            return {
-                ...state,
-                cart: [...state.cart,cartProduct]
-            }
-            
-        }
-        //decrement item
-        else if(action.type === 'SET_DECREMENT'){
-            let updatedProduct = state.cart.map((currEl)=>{
-                if(currEl.id === action.payload){
-                    console.log(currEl);
-                } 
-            })
-        }
-       
+
+    //Show cart Item
+    const showCartIem =()=>{
+        axios.get('http://127.0.0.1:8000/user-product/')
+        .then(res=>{
+          setUserProduct(res.data)
+        })
+      }
+      useEffect(()=>{
+        showCartIem()
+      },[])
+//Delete cart item
+const deleteData = async (id) => {
+    console.log(id);
+    try {
+       const response = await axios.delete(`http://127.0.0.1:8000/user-product/${id}/`);
+       toast.success('Product Deleted')
+      showCartIem()
+    } catch (error) {
+       console.error(error);
     }
-   
-    
-    const [state, dispatch] = useReducer(reducer,initialState)
-    //add to cart
-    const addToCart =(product)=>{
-        dispatch({type:"ADD_TO_CART",payload:{product}})
-    }
-    const setDecrease = (id)=>{
-        dispatch({type:'SET_DECREMENT',payload:id})
-    }
-    const setIncrease = (id)=>{
-        dispatch({type:'SET_INCREMENT', payload:id})
+ };
+//  sign up here
+
+
+
+ // pass data
+    const value = {
+        UserProduct,
+        showCartIem,
+        deleteData,
+        addToCart,
+        setDecrease,
+        setIncrease,
+        productQuantity
     }
     return (
-        <CartContext.Provider value={{
-            ...state,
-            addToCart,
-            setDecrease,
-            setIncrease
-        }}>{children}</CartContext.Provider>
+        <CartContext.Provider value= {value}>{children}</CartContext.Provider>
     );
     
 };

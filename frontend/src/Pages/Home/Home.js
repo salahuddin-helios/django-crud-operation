@@ -5,54 +5,87 @@ import toast from 'react-hot-toast';
 const Home = () => {
   const [formData, setFormData] = useState(null)
   // const [buttonDisabled, setButtonDisabled] = useState(true)
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  // const handleChange =(e)=>{
+  //   setFormData({
+  //     ...formData,
+  //     [e.target.name]: e.target.value
+  //   })
+  //   console.log(formData);
+  // }
 
-  const handleChange =(e)=>{
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
 
 
-
-  const AddUser = event => {
-    event.preventDefault();
-    axios.post('http://127.0.0.1:8000/create/',formData)
-    .then(res=>{
-     console.log(res.data);
+  // const AddUser = event => {
+  //   event.preventDefault();
+  //   axios.post('http://127.0.0.1:8000/create/',formData)
+  //   .then(res=>{
+  //    console.log(res.data);
     
-     toast.success("User created")
-    //  showUser();
-    })
-  }
+  //    toast.success("User created")
+  //   //  showUser();
+  //   })
+  // }
+
+
+
+  const submit = async e => {
+    e.preventDefault();
+    const user = {
+      username: username,
+      password: password
+     };
+    // Create the POST requuest
+    const {data} = await                                                                            
+                   axios.post('http://localhost:8000/token/',
+                   user ,{headers: 
+                  {'Content-Type': 'application/json'}},
+                  {withCredentials: true}
+                  );
+
+   // Initialize the access & refresh token in localstorage.      
+   localStorage.clear();
+   localStorage.setItem('access_token', data.access);
+   localStorage.setItem('refresh_token', data.refresh);
+   axios.defaults.headers.common['Authorization'] = `Bearer ${data['access']}`;
+   console.log('Token created');
+   window.location.href = '/'
+}
 
 
  
     return (
-            <div>
- <div className='flex justify-content-center justify-items-center my-4'>
-        <div className='bg-light p-2 rounded shadow-lg user-form'>
-      <h3 className='mb-4'>Add your information</h3>
-          <form onSubmit={AddUser}>
-            <div className="mb-3">
-              <label className="form-label">Your Name</label>
-
-              <input  onChange={handleChange} name="name" type="text" placeholder="Your name" className="form-control" />
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Phone Number</label>
-
-              <input name="number" onChange={handleChange} type="text" className="form-control" id="exampleFormControlInput1" pattern="[0-9+]{14}" title="Use only BD Number" placeholder="Phone" />
-            </div>
-            <div className="mb-3">
-              <input className="btn btn-primary form-control" disabled={!(formData?.name && formData?.number)} type="submit" value="Submit" />
-            </div>
-          </form>
+      <div className="Auth-form-container">
+      <form className="Auth-form" onSubmit={submit}>
+        <div className="Auth-form-content">
+          <h3 className="Auth-form-title">Sign In</h3>
+          <div className="form-group mt-3">
+            <label>Username</label>
+            <input className="form-control mt-1" 
+              placeholder="Enter Username" 
+              name='username'  
+              type='text' value={username}
+              required 
+              onChange={e => setUsername(e.target.value)}/>
+          </div>
+          <div className="form-group mt-3">
+            <label>Password</label>
+            <input name='password' 
+              type="password"     
+              className="form-control mt-1"
+              placeholder="Enter password"
+              value={password}
+              required
+              onChange={e => setPassword(e.target.value)}/>
+          </div>
+          <div className="d-grid gap-2 mt-3">
+            <button type="submit" 
+               className="btn btn-primary">Submit</button>
+          </div>
         </div>
-
-      
-      </div>
-    </div>
+     </form>
+   </div>
     );
 };
 

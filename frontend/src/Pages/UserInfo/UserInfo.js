@@ -4,9 +4,10 @@ import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import './UserInfo.css'
 const UserInfo = () => {
+  const localUrl = process.env.REACT_APP_LOCAL_URL
     const [users,setUser]= useState([])
     const showUser = ()=>{
-      axios.get('http://127.0.0.1:8000/list/')
+      axios.get(`${localUrl}list/`)
       .then(res=>{
         setUser(res.data)
       })
@@ -15,7 +16,7 @@ const UserInfo = () => {
       showUser();
     }, []);
     const DeleteUser = (id)=>{
-        axios.delete(`http://127.0.0.1:8000/delete/${id}`)
+        axios.delete(`${localUrl}/delete/${id}`)
         .then(res=>{
           console.log(res.data);
           toast.success('User deleted')

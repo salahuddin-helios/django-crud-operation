@@ -4,9 +4,9 @@ import './product.css'
 import SingleProduct from './SingleProduct';
 const Product = () => {
     const [products,setProduct] = useState([])
-
+    const localUrl = process.env.REACT_APP_LOCAL_URL
     useEffect(()=>{
-        axios.get('http://127.0.0.1:8000/product/')
+        axios.get(`${localUrl}product/`)
         .then(res=>{
             setProduct(res.data)
         })

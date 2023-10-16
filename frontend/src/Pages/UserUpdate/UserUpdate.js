@@ -5,10 +5,10 @@ import toast from 'react-hot-toast';
 const UserUpdate = () => {
     const [user,setUser] = useState({})
     const {id} = useParams()
-
+    const localUrl = process.env.REACT_APP_LOCAL_URL
     
 useEffect(()=>{
-    axios.get(`http://127.0.0.1:8000/details/${id}`)
+    axios.get(`${localUrl}details/${id}`)
     .then(res=>{
         console.log(res);
      setUser(res.data)
@@ -19,7 +19,7 @@ const updateUser = event => {
   const form = event.target;
   const name = form.name.value;
   const number = form.number.value;
-  axios.put(`http://127.0.0.1:8000/update/${id}/`,{
+  axios.put(`${localUrl}update/${id}/`,{
     name,number,
   })
   .then(res=>{

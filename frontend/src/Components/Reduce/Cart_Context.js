@@ -6,12 +6,10 @@ const CartContext = createContext()
 const CartProvider = ({children}) => {
     const [UserProduct,setUserProduct] = useState([])
     const [UserProductDetail,setUserProductDetail] = useState([])
-    // { headers: {"Authorization" : `Bearer ${localStorage.getItem('access_token')}`} }
-  
-
+    const localUrl = process.env.REACT_APP_LOCAL_URL
     //Show cart Item
     const showCartIem =()=>{
-        axios.get('http://127.0.0.1:8000/user-product/',{
+        axios.get(`${localUrl}user-product/`,{
             headers:{
                 'Authorization': `Bearer ${localStorage.getItem('access_token')}`
             }
@@ -28,7 +26,7 @@ const CartProvider = ({children}) => {
       },[])
 
       const showCartIemUser =()=>{
-        axios.get('http://127.0.0.1:8000/user-details/',{
+        axios.get(`${localUrl}user-details/`,{
             headers:{
                 'Authorization': `Bearer ${localStorage.getItem('access_token')}`
             }
@@ -48,7 +46,7 @@ const CartProvider = ({children}) => {
 //Delete cart item
 const deleteData = async (id) => {
     try {
-       const response = await axios.delete(`http://127.0.0.1:8000/user-product/${id}/`);
+       const response = await axios.delete(`${localUrl}user-product/${id}/`);
        toast.success('Product Deleted')
       showCartIem()
       showCartIemUser()

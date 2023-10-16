@@ -13,8 +13,9 @@ const DetailProduct = () => {
     const {id} = useParams()
     const navigate = useNavigate()
     //get cart item detail
+    const localUrl = process.env.REACT_APP_LOCAL_URL
     useEffect(()=>{
-        axios.get(`http://127.0.0.1:8000/product/${id}/`,{
+        axios.get(`${localUrl}product/${id}/`,{
             // headers:{
             //     'Authorization': `Bearer ${localStorage.getItem('access_token')}`
             // }
@@ -39,9 +40,10 @@ const DetailProduct = () => {
         if (localStorage.getItem('access_token') == null) {
             navigate('/login')
            }
+           
         else{
-        const data = {'product':product,'quantity':productQuantity}
-        axios.post('http://127.0.0.1:8000/user-product/',data,
+            const data = {'product':product,'quantity':productQuantity}
+        axios.post(`${localUrl}user-product/`,data,
         {
             headers:{
                 'Authorization': `Bearer ${localStorage.getItem('access_token')}`

@@ -5,9 +5,9 @@ import './UserInfo.css'
 const UserInfoDetail = () => {
     const [user,setUser] = useState({})
     const {id} = useParams()
-
+    const localUrl = process.env.REACT_APP_LOCAL_URL
 useEffect(()=>{
-    axios.get(`http://127.0.0.1:8000/product/${id}/`)
+    axios.get(`${localUrl}product/${id}/`)
     .then(res=>{
      setUser(res.data)
     })

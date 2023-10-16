@@ -1,12 +1,14 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Link, createBrowserRouter } from "react-router-dom";
 import Main from "../Main/Main";
-import Home from "../Pages/Home/Home";
+import Home from "../Pages/Home/Login";
 import UserInfo from "../Pages/UserInfo/UserInfo";
 import UserInfoDetail from "../Pages/UserInfo/UserInfoDetail";
 import UserUpdate from "../Pages/UserUpdate/UserUpdate";
 import Product from "../Pages/Product/Product";
 import DetailProduct from "../Pages/Product/DetailProduct";
 import Cart from "../Components/Reduce/Cart";
+import Login from "../Pages/Home/Login";
+import Register from "../Pages/Home/Register";
 
 const router = createBrowserRouter([
     {
@@ -15,7 +17,7 @@ const router = createBrowserRouter([
         children:[
             {
                 path:'/',
-                element: <Home></Home>
+                element: <Product></Product>
             },
             {
                 path:'list/',
@@ -40,8 +42,24 @@ const router = createBrowserRouter([
             {
                 path:"cart/",
                 element:<Cart></Cart>
-            }
+            },
+            {
+                path:"login/",
+                element:<Login></Login>
+            },
+            {
+                path:"register/",
+                element:<Register></Register>
+            },
         ]
+    },
+    {
+        path:'*',
+        element: <div className="text-center my-4 text-light">
+            <h2>Error!</h2>
+            <p>Something went wrong</p>
+            <Link to={'/'} className="btn btn-primary btn-sm">Back to safe</Link>
+        </div>
     }
 ])
 export default router

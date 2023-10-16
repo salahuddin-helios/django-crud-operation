@@ -1,22 +1,60 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './product.css'
 import { FaPlus,FaMinus } from "react-icons/fa";
 import toast from 'react-hot-toast';
 import { useCartContext } from '../../Components/Reduce/Cart_Context';
 const DetailProduct = () => {
-    const {showCartIem,setDecrease,setIncrease,productQuantity,addToCart} = useCartContext()
+    const {showCartIem,showCartIemUser} = useCartContext()
+    const [productQuantity, setProductQuantity] = useState(1)
     const [product,setProduct] = useState({})
     const {name,price,image,detail} = product
     const {id} = useParams()
+    const navigate = useNavigate()
+    //get cart item detail
     useEffect(()=>{
-        axios.get(`http://127.0.0.1:8000/product/${id}/`)
+        axios.get(`http://127.0.0.1:8000/product/${id}/`,{
+            // headers:{
+            //     'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+            // }
+        })
         .then(res=>{
           setProduct(res.data)
           
         })
     },[])
+    // increase
+    const setIncrease=()=>{
+        setProductQuantity(productQuantity+1)
+    }
+    //decrease
+    const setDecrease = ()=>{
+        setProductQuantity(productQuantity-1)
+    }
+    // add to cart
+
+    const addToCart = (product)=>{
+        
+        if (localStorage.getItem('access_token') == null) {
+            navigate('/login')
+           }
+        else{
+        const data = {'product':product,'quantity':productQuantity}
+        axios.post('http://127.0.0.1:8000/user-product/',data,
+        {
+            headers:{
+                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+            }
+        }
+        )
+        .then(res=>{
+            toast.success('product added')
+            showCartIem()
+            showCartIemUser()
+        })
+        }
+    }
 
     return (
         <div className='detail-product text-light'>

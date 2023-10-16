@@ -5,48 +5,58 @@ const CartContext = createContext()
 
 const CartProvider = ({children}) => {
     const [UserProduct,setUserProduct] = useState([])
-    const [productQuantity, setProductQuantity] = useState(1)
-    // add to cart
-    console.log(productQuantity);
-    const addToCart = (product)=>{
-        const data = {'product':product,'quantity':productQuantity}
-        console.log(data);
-        axios.post('http://127.0.0.1:8000/user-product/',data)
-        .then(res=>{
-            toast.success('product added')
-            showCartIem()
-        })
-        console.log(data);
-    }
-    const setIncrease=()=>{
-        setProductQuantity(productQuantity+1)
-    }
-    const setDecrease = ()=>{
-        setProductQuantity(productQuantity-1)
-    }
-
+    const [UserProductDetail,setUserProductDetail] = useState([])
+    // { headers: {"Authorization" : `Bearer ${localStorage.getItem('access_token')}`} }
+  
 
     //Show cart Item
     const showCartIem =()=>{
-        axios.get('http://127.0.0.1:8000/user-product/')
+        axios.get('http://127.0.0.1:8000/user-product/',{
+            headers:{
+                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+            }
+        })
         .then(res=>{
           setUserProduct(res.data)
         })
       }
       useEffect(()=>{
-        showCartIem()
+        if(localStorage.getItem('access_token')){
+            
+            showCartIem()
+        }
       },[])
+
+      const showCartIemUser =()=>{
+        axios.get('http://127.0.0.1:8000/user-details/',{
+            headers:{
+                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+            }
+        })
+        .then(res=>{
+            setUserProductDetail(res.data)
+        })
+      }
+      useEffect(()=>{
+        if(localStorage.getItem('access_token')){
+            
+            showCartIemUser()
+        }
+      },[])
+ 
+ 
 //Delete cart item
 const deleteData = async (id) => {
-    console.log(id);
     try {
        const response = await axios.delete(`http://127.0.0.1:8000/user-product/${id}/`);
        toast.success('Product Deleted')
       showCartIem()
+      showCartIemUser()
     } catch (error) {
        console.error(error);
     }
  };
+
 //  sign up here
 
 
@@ -56,10 +66,8 @@ const deleteData = async (id) => {
         UserProduct,
         showCartIem,
         deleteData,
-        addToCart,
-        setDecrease,
-        setIncrease,
-        productQuantity
+        showCartIemUser,
+        UserProductDetail
     }
     return (
         <CartContext.Provider value= {value}>{children}</CartContext.Provider>
